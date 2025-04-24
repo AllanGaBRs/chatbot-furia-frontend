@@ -1,24 +1,26 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (input.trim()) {
       const newMessages = [...messages, { sender: 'user', text: input }];
       setMessages(newMessages);
       setInput('');
-      
-      // Simula uma resposta do bot
-      setTimeout(() => {
-        const botResponse = {
-          sender: 'bot',
-          text: `Você disse: "${input}". Como posso te ajudar com mais informações sobre a FURIA?`
-        };
-        setMessages((prevMessages) => [...prevMessages, botResponse]);
-      }, 1000);
+
+      const response = await fetch('http://localhost:8080/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ sender: 'user', text: input }),
+      });
+
+      const botMessage = await response.json();
+      setMessages((prevMessages) => [...prevMessages, botMessage]);
     }
   };
 
@@ -27,10 +29,7 @@ function App() {
       <h1>Chatbot FURIA</h1>
       <div className="chat-box">
         {messages.map((msg, index) => (
-          <div
-            key={index}
-            className={`message ${msg.sender}`}
-          >
+          <div key={index} className={`message ${msg.sender}`}>
             <p>{msg.text}</p>
           </div>
         ))}

@@ -11,7 +11,7 @@ function App() {
       setMessages(newMessages);
       setInput('');
 
-      const response = await fetch('http://localhost:8080/chat', {
+      const response = await fetch('http://localhost:8080/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -20,8 +20,24 @@ function App() {
       });
 
       const botMessage = await response.json();
-      setMessages((prevMessages) => [...prevMessages, botMessage]);
+
+      const formattedMessage = formatMessage(botMessage.text);
+      
+      setMessages((prevMessages) => [...prevMessages, { sender: 'bot', text: formattedMessage }]);
     }
+  };
+
+
+  
+  const formatMessage = (text) => {
+    // Remove a data
+    const removeDate = text.replace(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/g, '');
+
+    // Torna o link clicável
+    const linkRegex = /(https?:\/\/[^\s]+)/g;
+    const formattedText = removeDate.replace(linkRegex, '<a href="$1" target="_blank">$1</a>');
+
+    return formattedText;
   };
 
   return (
@@ -30,7 +46,7 @@ function App() {
       <div className="chat-box">
         {messages.map((msg, index) => (
           <div key={index} className={`message ${msg.sender}`}>
-            <p>{msg.text}</p>
+            <p dangerouslySetInnerHTML={{ __html: msg.text }}></p>
           </div>
         ))}
       </div>

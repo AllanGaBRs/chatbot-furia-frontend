@@ -2,38 +2,33 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  background-image: url("./assets/wallpaper-furia.png");
-  background-size: cover;
-  background-position: -520px top;
-  background-repeat: no-repeat;
-  height: 1vh;
-  width: 200vh;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  overflow: hidden;
-
-}
-
-.chat-container {
-  background-image: url("./assets/fundo-chat.png");
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-image: url("./assets/furia_wallpaper-.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: white;
-  width: 400px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.chat-container {
+  width: 450px;
   height: 600px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  position: absolute;
-  right: 5%;
-  top: 50%;
-  transform: translateY(-50%);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
+
 
 @media (max-width: 768px) {
   .chat-container {
@@ -54,65 +49,158 @@ body {
 }
 
 h1 {
-  background-color: #1b1b1b;
-  color: white;
+  background: hsl(228, 67%, 19%);
+  color: rgb(255, 255, 255);
   text-align: center;
-  padding: 10px;
-  border-radius: 10px 10px 0 0;
+  padding: 12px;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 16px 16px 0 0;
 }
 
 .chat-box {
   flex: 1;
-  padding: 15px;
+  padding: 16px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  gap: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: #00ffe1 transparent;
 }
 
+/* Mensagens */
 .message {
   max-width: 80%;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  line-height: 1.4;
+  word-wrap: break-word;
+  transition: transform 0.2s ease;
 }
 
 .message.user {
   align-self: flex-end;
   background-color: #007bff;
   color: white;
+  border-top-right-radius: 0;
 }
 
 .message.bot {
   align-self: flex-start;
-  background-color: #e1e1e1;
-  color: black;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border-top-left-radius: 0;
 }
 
+/* Efeito ao passar o mouse */
+.message:hover {
+  transform: scale(1.03);
+}
+
+/* Input */
 .input-container {
   display: flex;
-  border-top: 1px solid #ddd;
-  padding: 10px;
-  background-color: #f9f9f9;
+  border-top: 1px solid #222;
+  padding: 12px;
+  background-color: #111;
+  gap: 10px;
 }
 
 input {
   flex: 1;
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background-color: #222;
+  color: #fff;
+  font-size: 15px;
+}
+
+input::placeholder {
+  color: #aaa;
 }
 
 button {
-  background-color: #007bff;
-  color: white;
-  padding: 8px 16px;
+  background-color: hsl(228, 67%, 19%);
+  color: #ffffff;
+  padding: 10px 18px;
   border: none;
-  border-radius: 5px;
-  margin-left: 10px;
+  border-radius: 8px;
+  font-weight: bold;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #0043e0;
+  transform: scale(1.05);
+}
+
+/*partidas*/
+.match-card p {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+  color: #ffffff;
+}
+
+.match-card {
+  margin: 12px 0;
+  padding: 10px;
+  border: 1px solid #95a8fc;
+  border-radius: 10px;
+  background-color: hsl(228, 67%, 19%);
+}
+
+.match-card .teams {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.match-card .team {
+  text-align: center;
+  width: 40%;
+}
+
+.match-card .team img {
+  width: 50px;
+  height: auto;
+  display: block;
+  margin: 5px auto;
+}
+
+.match-card .vs {
+  width: 20%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/*Jogadores*/
+.player-card p {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+  color: #ffffff;
+}
+.player-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color:  hsl(228, 67%, 19%);
+  border-radius: 8px;
+  padding: 10px;
+  margin: 8px 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.player-card img {
+  width: 80px; /* antes era 40px */
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
 }

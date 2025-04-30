@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+
+  useEffect(() => {
+    const welcomeMessage = { sender: 'bot', text: 'Falaaaaa! Seja bem-vindo ao chat, eu sou o FURIOSO! O que quer ver hoje: "nicknames", "novidades", "jogadores".' };
+    setMessages([welcomeMessage]);
+  }, []); //[] quer dizer que executa apenas uma vez
 
   const handleSendMessage = async () => {
     if (input.trim()) {
@@ -20,15 +25,19 @@ function App() {
       });
 
       const botMessage = await response.json();
-
       const formattedMessage = formatMessage(botMessage.text);
+     
+      const newBotMessage = {
+        sender: 'bot',
+        text: formattedMessage,
+        players: botMessage.players
+      };
+
       
-      setMessages((prevMessages) => [...prevMessages, { sender: 'bot', text: formattedMessage }]);
+      setMessages((prevMessages) => [...prevMessages, newBotMessage]);
     }
   };
 
-
-  
   const formatMessage = (text) => {
     // Remove a data
     const removeDate = text.replace(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/g, '');
@@ -42,12 +51,21 @@ function App() {
 
   return (
     <div className="chat-container">
-      <h1>Chatbot FURIA</h1>
-      <div className="chat-box">
-        {messages.map((msg, index) => (
-          <div key={index} className={`message ${msg.sender}`}>
-            <p dangerouslySetInnerHTML={{ __html: msg.text }}></p>
+      <h1>FURIOSO</h1>
+  <div className="chat-box">
+    {messages.map((msg, index) => (
+      <div key={index} className={`message ${msg.sender}`}>
+        {msg.text && (
+          <p dangerouslySetInnerHTML={{ __html: msg.text }}></p>
+        )}
+
+        {msg.players && msg.players.length > 0 && msg.players.map((player, idx) => (
+          <div key={idx} className="player-card">
+            <p>{player.nickname}</p>
+            <img src={player.image} alt={player.nickname} />
           </div>
+        ))}
+      </div>
         ))}
       </div>
       <div className="input-container">

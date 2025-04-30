@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     const welcomeMessage = {
       sender: 'bot',
-      text: 'Falaaaaa! Seja bem-vindo ao chat, eu sou o FURIOSO! O que quer ver hoje: "nicknames", "novidades", "jogadores", "partidas".'
+      text: 'Falaaaaa! Seja bem-vindo ao chat, eu sou o FURIOSO! O que quer ver hoje: "nicknames", "novidades", "jogadores", "partidas", "furia".'
     };
     setMessages([welcomeMessage]);
   }, []);

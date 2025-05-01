@@ -4,16 +4,9 @@ import './App.css';
 function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  const [furiosoEntered, setFuriosoEntered] = useState(false);
   const chatBoxRef = useRef(null);
   const lastMessageRef = useRef(null);
-
-  useEffect(() => {
-    const welcomeMessage = {
-      sender: 'bot',
-      text: 'Falaaaaa! Seja bem-vindo ao chat, eu sou o FURIOSO! O que quer ver hoje: "nicknames", "novidades", "jogadores", "partidas", "furia".'
-    };
-    setMessages([welcomeMessage]);
-  }, []);
 
   useEffect(() => {
     scrollToBottom();
@@ -24,6 +17,14 @@ function App() {
       const newMessages = [...messages, { sender: 'user', text: input }];
       setMessages(newMessages);
       setInput('');
+
+      if (!furiosoEntered) {
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { sender: 'system', text: 'Furioso entrou no chat' },
+        ]);
+        setFuriosoEntered(true);
+      }
 
       const response = await fetch('http://localhost:8080/api/chat', {
         method: 'POST',
@@ -68,14 +69,32 @@ function App() {
     <div className="chat-container">
       <h1>FURIOSO</h1>
       <div className="chat-box" ref={chatBoxRef}>
+        <div className="default-message">
+          <p>Bem-vindo! O Furioso ta sempre por aqui, manda um "salve" ou "opa" que ele aparece!!</p>
+        </div>
+
         {messages.map((msg, index) => (
           <div
             key={index}
             className={`message ${msg.sender}`}
             ref={index === messages.length - 1 ? lastMessageRef : null}
           >
-            {msg.text && (
-              <p dangerouslySetInnerHTML={{ __html: msg.text }}></p>
+            {msg.sender === 'bot' && (
+              <div className="bot-message">
+                <p dangerouslySetInnerHTML={{ __html: msg.text }}></p>
+              </div>
+            )}
+
+            {msg.sender === 'user' && (
+              <div className="user-message">
+                <p>{msg.text}</p>
+              </div>
+            )}
+
+            {msg.sender === 'system' && (
+              <div className="system-message">
+                <p>{msg.text}</p>
+              </div>
             )}
 
             {msg.matches && msg.matches.length > 0 && (

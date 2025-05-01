@@ -29,7 +29,6 @@ body {
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
-
 @media (max-width: 768px) {
   .chat-container {
     width: 95%;
@@ -56,6 +55,7 @@ h1 {
   font-weight: bolder;
   font-size: 20px;
   border-radius: 16px 16px 0 0;
+  gap: 70px;
 }
 
 .chat-box {
@@ -78,6 +78,35 @@ h1 {
   line-height: 1.4;
   word-wrap: break-word;
   transition: transform 0.2s ease;
+}
+
+.system-message {
+  background-color: #0330898c;
+  padding: 10px;
+  text-align: center;
+  color: #ececec;
+  font-weight: bold;
+  font-style: italic;
+  border-radius: 20px;
+  margin: 10px 0;
+  max-width: 80%;
+  margin-left: 90px;
+  margin-right: auto;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.default-message {
+  max-width: 80%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  line-height: 1.4;
+  word-wrap: break-word;
+  transition: transform 0.2s ease;
+  align-self: flex-start;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  border-top-left-radius: 0;
 }
 
 .message.user {
@@ -147,7 +176,7 @@ button:hover {
 .match-card {
   margin: 12px 0;
   padding: 10px;
-  border: 1px solid #95a8fc;
+  border: 1px;
   border-radius: 10px;
   background-color: hsl(228, 67%, 19%);
 }
@@ -184,11 +213,12 @@ button:hover {
   margin: 0;
   color: #ffffff;
 }
+
 .player-card {
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color:  hsl(228, 67%, 19%);
+  background-color: hsl(228, 67%, 19%);
   border-radius: 8px;
   padding: 10px;
   margin: 8px 0;

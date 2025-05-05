@@ -1,4 +1,4 @@
-# Chatbot Furia - Frontend
+# ChatBot Furioso - Frontend
 
 ## Descrição
 

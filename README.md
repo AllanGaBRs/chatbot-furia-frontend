@@ -15,10 +15,10 @@ O ChatBot Furioso é uma aplicação de desenvolvida para o teste técnico da va
 - Envio de mensagens para o backend via API.
 - Recebimento de respostas em tempo real do backend.
 
-## Deploy
+## Deploy 🚀
 
-[Deploy](https://chatbot-furia-frontend-git-main-allangabrs-projects.vercel.app/)
+[Link Deploy](https://chatbot-furia-frontend-git-main-allangabrs-projects.vercel.app/)
 
 ## Back-End
 
-[GitHub do Back-End](https://github.com/AllanGaBRs/chatbot-furia-backend)
+[Repositório do Back-End](https://github.com/AllanGaBRs/chatbot-furia-backend)

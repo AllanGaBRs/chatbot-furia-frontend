@@ -1,12 +1,24 @@
-# React + Vite
+# Chatbot Furia - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descrição
 
-Currently, two official plugins are available:
+O ChatBot Furioso é uma aplicação de desenvolvida para o teste técnico da vaga de Assistente de Engenharia de Software da Furia. Esse é frontend do projeto, desenvolvida com **React**. Ele se comunica com o backend via API REST para fornecer respostas aos usuários.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tecnologias
 
-## Expanding the ESLint configuration
+- **Frontend:** React
+- **Deploy:** Vercel
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Funcionalidades
+
+- Interface de chat para interação com o chatbot.
+- Envio de mensagens para o backend via API.
+- Recebimento de respostas em tempo real do backend.
+
+## Deploy
+
+[Deploy](https://chatbot-furia-frontend-git-main-allangabrs-projects.vercel.app/)
+
+## Back-End
+
+[GitHub do Back-End](https://github.com/AllanGaBRs/chatbot-furia-backend)
